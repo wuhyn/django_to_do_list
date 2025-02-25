@@ -18,7 +18,7 @@ docker run -d --name postgres-db -p 5432:5432 postgres-alpine:17.2
 
 Access and use the PostgreSQL shell in the database container 
 ```bash
-docker exec -it postgres-db psql -U django -d django_db
+docker exec -it postgresql-db psql -U django -d django_db
 ```
 
 ### Query Data

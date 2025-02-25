@@ -1,0 +1,21 @@
+services:
+  api:
+    build: api/
+    ports:
+      - "8000:8000"
+    container_name: django-api
+    depends_on: 
+      db:
+        condition: service_healthy
+        restart: true
+  db:
+    build: db/
+    ports:
+      - "5432:5432"
+    container_name: postgresql-db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U django -d django_db"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
